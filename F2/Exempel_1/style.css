@@ -1,0 +1,25 @@
+/* Min CSS-fil */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Helvetica Neu", Helvetica, Arial, sans-serif;
+}
+
+h1, h2 {
+    font-weight: bold;
+    color: slateblue;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+a {
+    color: rgb(30,144,255);
+}
+
+.ingrid {
+    background-color: #E6E6FA;
+}

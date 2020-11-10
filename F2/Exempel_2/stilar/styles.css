@@ -1,0 +1,41 @@
+
+body {
+    font-family: Helvetica, Arial;
+    margin: 1.5rem;
+}
+
+h1,h2 {
+    font-weight: bold;
+    color: slateblue;
+    margin-bottom: 0.5rem;
+}
+h2{
+    font-size: 20px;
+}
+a{
+    color: rgb(30,144,255);
+}
+
+.ingredients {
+    background-color: #E6E6FA;
+    padding: 1rem;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.ingredients h2, .instructions h2 {
+    margin-top: 0;
+}
+.ingredients ul, .lista {
+    margin-bottom: 0;
+}
+
+img {
+    width: 400px;
+    max-width: 100%;
+    height: auto;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
