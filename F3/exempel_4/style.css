@@ -1,0 +1,35 @@
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+ul.main-menu {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  background-color: lavender;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+ul.main-menu:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+ul.main-menu > li {
+  position: relative;
+  float: left;
+}
+
+ul.main-menu > li > a {
+  display: block;
+  padding: 1rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+ul.main-menu > li > a:hover {
+  background-color: #BABAEC;
+}

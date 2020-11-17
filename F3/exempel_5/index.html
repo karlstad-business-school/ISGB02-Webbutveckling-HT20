@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="utf-8">
+    <title>Bakgrundsbilder</title>
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+      .bg-image {
+        background-image: url('forest.jpeg');
+        width: 400px;
+        height: 400px;
+        border: 2px solid black;
+        background-repeat: no-repeat;
+      }
+      .example {
+        min-height: 100vh;
+      }
+      h2 {
+        margin-top: 3rem;
+      }
+      code {
+        color: dodgerblue;
+        font-size: 112.5%
+      }
+      i {
+        color: silver;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Bakgrundsbilder</h1>
+    <div class="example">
+      <h2><code>background-repeat: repeat;</code><i> (standard)</i></h2>
+      <div class="bg-image" style="background-repeat: repeat;"></div>
+    </div>
+
+    <div class="example">
+      <h2><code>background-repeat: no-repeat;</code></h2>
+      <div class="bg-image" style="background-repeat: no-repeat;"></div>
+    </div>
+
+    <div class="example">
+      <h2><code>background-position: top left;</code><i> (standard)</i></h2>
+      <div class="bg-image" style="background-position: top left;"></div>
+    </div>
+
+    <div class="example">
+      <h2><code>background-position: center;</code></h2>
+      <div class="bg-image" style="background-position: center;"></div>
+    </div>
+
+    <div class="example">
+      <h2><code>background-size: 50%;</code></h2>
+      <div class="bg-image" style="background-size: 50%;"></div>
+    </div>
+
+    <div class="example">
+      <h2><code>background-size: 100% 100%;</code></h2>
+      <div class="bg-image" style="background-size: 100% 100%;"></div>
+    </div>
+
+    <div class="example">
+      <h2><code>background-size: cover;</code></h2>
+      <div class="bg-image" style="background-size: cover;"></div>
+    </div>
+
+    <div class="example">
+      <h2><code>background-size: contain;</code></h2>
+      <div class="bg-image" style="background-size: contain;"></div>
+    </div>
+
+    <div class="example">
+      <h2><code>background-attachment: fixed;</code></h2>
+      <div class="bg-image" style="background-attachment: fixed; background-repeat: repeat;"></div>
+    </div>
+
+
+  </body>
+</html>
