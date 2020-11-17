@@ -1,0 +1,33 @@
+html {font-size: 16px;}
+body {
+    background-color: thistle;
+}
+
+body>ul {
+    list-style-type: none;
+    background-color:  lightpink;
+    text-align: left;
+}
+
+ul>li {
+    border: solid 1px yellow;
+    box-sizing: content-box;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    margin: 0;
+    padding: 1rem;
+}
+ul>li>a {
+    text-decoration: none;
+    font-family: 'Gill Sans', Calibri, sans-serif;
+    font-size: 1.1rem;
+    color: white;
+}
+ul>li:hover {
+    background-color: plum;
+}
+ul>li:hover>a {
+    color: black;
+}
+

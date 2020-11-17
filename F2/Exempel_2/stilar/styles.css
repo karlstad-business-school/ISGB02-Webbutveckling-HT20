@@ -1,3 +1,6 @@
+* {
+    box-sizing: border-box;
+}
 
 body {
     font-family: Helvetica, Arial;
@@ -11,6 +14,7 @@ h1,h2 {
 }
 h2{
     font-size: 20px;
+
 }
 a{
     color: rgb(30,144,255);
@@ -21,6 +25,8 @@ a{
     padding: 1rem;
     border-radius: 10px;
     margin: 20px 0;
+    width: 50%;
+    float: left;
 }
 
 .ingredients h2, .instructions h2 {
@@ -34,8 +40,16 @@ img {
     width: 400px;
     max-width: 100%;
     height: auto;
+    float: left;
+    clear: both;
 }
 
 li {
     margin-bottom: 0.5rem;
+}
+
+.instructions {
+    border: solid 1px red;
+    width: 50%;
+    float: right;
 }
