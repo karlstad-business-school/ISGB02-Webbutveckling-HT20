@@ -10,19 +10,20 @@
 
       'use strict';
 
-      let antal = 0;
-      let raknare = 0;
-      let slumptal = 0;
+      var antal = 0;
+      var raknare = 0;
+      var slumptal = 0;
 
       antal = window.prompt('Ange ett tal!', '100');
 
       antal = window.parseInt(antal);
 
-      if(window.isNaN(antal)) {
-        window.alert('Ange ett tal vettja');
+      if (window.isNaN(antal)) {
+        window.alert('Ange ett tal!');
       }
       else {
-        for(raknare = 0; raknare < antal; raknare++) {
+        for (raknare = 0; raknare < antal; raknare++) {
+
           slumptal = Math.random();
           slumptal = slumptal * 10;
           slumptal = slumptal + 1;
@@ -30,15 +31,8 @@
 
           document.write('Slumptal: ' + slumptal + '<br>');
         }
-
-
-
       }
 
-
-
-    
-    
     </script>
   </body>
 </html>
