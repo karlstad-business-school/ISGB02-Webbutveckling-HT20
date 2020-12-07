@@ -43,15 +43,48 @@
 
                 */
 
-                if( isset( $_POST["skicka"] ) ) {
+                if( isset( $_POST["skicka"] ) ) { //5.
 
                     //1.
+                    //print_r($_POST);
+
                     //2.
-                    echo("<pre>");
-                    print_r($_POST);
-                    echo("</pre>");
+                    //echo("<pre>");
+                    //print_r($_POST);
+                    //echo("</pre>");
+
                     //3.
-                    echo($_POST["antal"] . " " . $_POST["min"] . " " . $_POST["max"]);
+                    //echo("<p>" . $_POST["antal"] . "</p>");
+                    //echo("<p>" . $_POST["min"] . "</p>");
+                    //echo("<p>" . $_POST["max"] . "</p>");
+
+
+                    $antal = $_POST["antal"];
+                    $min = $_POST["min"];
+                    $max = $_POST["max"];
+
+                    if( strlen($antal) === 0 || strlen($min) === 0 || strlen($max) === 0 ) { //6.
+                        echo("<p>Något av textfälten saknar värde!</p>");
+                    } else {
+                        if( !is_numeric($antal) || !is_numeric($min) || !is_numeric($max) ) { //7.
+                            echo("<p>Något av textfälten innehåller ett icke numeriskt värde!</p>");
+                        } else {
+                            //8.
+                            //echo("<p>Indata är ok!</p>");
+                            for($i = 0; $i < $antal; $i++) { //8.
+                                //echo("<p>$i</p>");
+                                $slumptal = rand($min, $max);
+                                $stars = "";
+
+                                for($j = 0; $j < $slumptal; $j++) { //9.
+                                    $stars .= "*";
+                                }
+
+                                echo("<p>$slumptal: $stars</p>");
+                            }
+                            
+                        }
+                    }
 
                 }
             ?>
