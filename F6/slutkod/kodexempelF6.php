@@ -43,6 +43,17 @@
 
                 */
 
+                if( isset( $_POST["skicka"] ) ) {
+
+                    //1.
+                    //2.
+                    echo("<pre>");
+                    print_r($_POST);
+                    echo("</pre>");
+                    //3.
+                    echo($_POST["antal"] . " " . $_POST["min"] . " " . $_POST["max"]);
+
+                }
             ?>
 
         </main>
@@ -50,8 +61,8 @@
         <form action="kodexempelF6.php" method="post">
         
             <input type="text" name="antal" />
-            <input type="min" name="min" />
-            <input type="max" name="max" />
+            <input type="text" name="min" />
+            <input type="text" name="max" />
             <input type="reset" name="rensa" value="Rensa" />
             <input type="submit" name="skicka" value="Skicka" />
 
