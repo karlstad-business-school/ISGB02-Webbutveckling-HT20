@@ -25,47 +25,65 @@
             <?php
 
                 /*
-                    Uppdateras innan W7
+                    Först till 100 poäng
+
+                    1. Lägg till funktionalitet som avgör om spelaren har nått 100 poäng eller inte.
+                    2. Har användaren nått 100 poäng skall du nollställa summa och antal för nytt spel.
+                    3. Koppla upp webbapplikationen mot databasen dicegame (se dicegame.sql).
+                    4. Skapa en ny INSERT för kolumnerna nickname, points och rounds i tabellen highscore.
+                    5. Förbered frågan för exekvering.
+                    6. Matcha namngiven behållare med värde.
+                    7. Exekvera frågan.
+                    8. Stäng ner databaskopplingen.
+
+
                 */
 
                 define("IMG", "<img src='https://openclipart.org/download/2821");
 
-                //4.
                 $summa = 0; 
                 $antal = 0;
+                $nickname = "";
 
-                //
                 if( isset( $_POST["skicka"] ) ) {
 
-                    $summa = $_POST["summa"];
-                    $antal = $_POST["antal"];
-                    
-                    //3.
-                    for($i = 1; $i <= 6; $i++) {
-                        $slumptal = rand(1, 6);
-                        
-                        echo(IMG . (26 + $slumptal) . "/Die" . $slumptal . ".svg' alt='Tärning " . $slumptal . "' />");
-                        
-                        //4. 
-                        $summa += $slumptal;
+                    $nickname = $_POST["nickname"];
 
+                    if(strlen($nickname) >= 2) {
+                        $summa = $_POST["summa"];
+                        $antal = $_POST["antal"];
+                        
+                        for($i = 1; $i <= 6; $i++) {
+                            $slumptal = rand(1, 6);
+                            echo(IMG . (26 + $slumptal) . "/Die" . $slumptal . ".svg' alt='Tärning " . $slumptal . "' />");
+                            $summa += $slumptal;
+                        }
+
+                        $antal++;
+                        echo("<p>Summan blev: $summa</p>");
+                        echo("<p>Antalet gånger du kastat de 6 tärningarna är: $antal");
+
+                    } else {
+                        echo("<p>Ange nickname!</p>");
                     }
-
-                    $antal++;
-                    echo("<p>Summan blev: $summa</p>");
-                    echo("<p>Antalet gånger du kastat de 6 tärningarna är: $antal");
-                    
                 }
 
 
             ?>
-            <form action="kodexempelW6.php" method="post">
+            <form action="kodexempelW7.php" method="post">
+                <input type="text" name="nickname" value="<?php echo($nickname); ?>" />
                 <input type="submit" name="skicka" value="Skicka" />
                 <input type="submit" name="rensa" value="Rensa" />
                 <input type="hidden" name="summa" value="<?php echo($summa); ?>" />
                 <input type="hidden" name="antal" value="<?php echo($antal); ?>" />
             </form>
 
+            <?php
+
+                //Lista innehållet i tabellen highscore som li-element i ett ol-element.
+                //När ni gör utsökningen sortera resultatet i fallande ordning efter rounds.
+
+            ?>
         </main>
 
     </body>
