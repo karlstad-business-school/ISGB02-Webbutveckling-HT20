@@ -47,6 +47,37 @@
                     Extra uppgift på egen hand!
                     Lista resultatet från SQL-frågan genom att presentera det i en HTML-tabell!
                 */
+
+                $dns = "mysql:host=localhost;dbname=demodice;charset=utf8";
+                $userName = "root";
+                $password = "";
+
+                $dbh = new PDO($dns, $userName, $password);
+
+                //echo("Fungerar!");
+
+                $sql = "SELECT * FROM nbrofdices;";
+
+                $stmt = $dbh->prepare($sql);
+
+                $stmt->execute();
+
+                //Visa data som vi fick i retur från databasen
+                while( $row = $stmt->fetch() ) {
+
+                    $id = $row["id"];
+                    $one = $row["one"];
+                    $six = $row["six"];
+                    $timestamp = $row["timestamp"];
+
+                    echo("<p>id: $id, one: $one, six: $six, timestamp: $timestamp</p>");
+
+                }
+
+                //echo("Fungerar!");
+
+                $stmt = null;
+                $dbh = null;
                   
             ?>
 
