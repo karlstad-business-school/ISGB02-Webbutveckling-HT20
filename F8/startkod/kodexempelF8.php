@@ -36,12 +36,10 @@
                 */
 
                 $dns = "mysql:host=localhost;dbname=demodice;charset=utf8";
-                $userName = "root";
+                $userName = "root"; //Skapa en egen användare med lösenord!
                 $password = "";
 
                 $dbh = new PDO($dns, $userName, $password);
-
-                //echo("Fungerar!");
 
                 $sql = "SELECT * FROM nbrofdices;";
 
@@ -49,7 +47,6 @@
 
                 $stmt->execute();
 
-                //Visa data som vi fick i retur från databasen
                 while( $row = $stmt->fetch() ) {
 
                     $id = $row["id"];
@@ -60,8 +57,6 @@
                     echo("<p>id: $id, one: $one, six: $six, timestamp: $timestamp</p>");
 
                 }
-
-                //echo("Fungerar!");
 
                 $stmt = null;
                 $dbh = null;

@@ -17,6 +17,18 @@
 
             <?php
 
+                /*
+                  1. Lägg till undantagshantering!
+
+                  2. Skapa funktioner för att skriva ut data som en HTML-tabell!
+
+            
+                */
+
+                //När ni är klara placera alla funktioner i en extern PHP-fil och inkludera den med
+                //include();
+
+                //Funktionerna
                 function createTable($table) {
 
                     $htmlTable = "<table class='table table-border'>" . PHP_EOL;
@@ -78,6 +90,38 @@
 
                 }
 
+
+                /*
+                    Workshop 20201214
+                    1. Placera tabellfunktionerna i en egen PHP-fil, namnge den tabelFunctions.php 
+                        och inkludera den i din webbapplikation.
+
+                    2. Skapa en ny PHP-fil och namnge den databaseFunctions.php och inkludera i din webbapplikation.
+
+                    3. I databaseFunctions.php skall du:
+
+                    a). Skapa funktionen openDatabaseConnection() som kopplar webbapplikationen mot databasen och returnerar ett "handtag".
+                        Om något går fel skall ett undantag kastas i funktionern och fångas i funktionen för att sedan
+                        kastas vidare till "huvudprogrammet"
+
+                        try {
+
+
+
+                        } catch(PDOException $e) {
+                            throw $e;
+                        }
+
+                    b). Skapa funktionen fetchDataFromDatabaseConnection() som tar emot en databaskoppling som byval och 
+                        söker ut alla rader och kolumner från nbrofdices samt från funktionen returnernar dessa.
+                        Om något går fel skall ett undantag kastas i funktionern och fångas i funktionen för att sedan
+                        kastas vidare till "huvudprogrammet".
+
+                    c). Skapa funktionen closeDatabaseConnection() som tar emot en databaskoppling som byref och tilldelar denna null.
+                        Om något går fel skall ett undantag kastas i funktionern och fångas i funktionen för att sedan
+                        kastas vidare till "huvudprogrammet".
+                */
+
                 try {
                     $dns = "mysql:host=localhost;dbname=demodice;charset=utf8";
                     $userName = "root"; //Skapa gärna en egen användare med lösenord och viss rättighet.
@@ -86,6 +130,7 @@
 
                     $dbh = new PDO($dns, $userName, $password, $dbhOptions);
 
+                    //echo("Fungerar!");
 
                     $sql = "SELECT * FROM nbrofdices;";
 
@@ -93,12 +138,27 @@
 
                     $stmt->execute();
 
+                    //Visa data som vi fick i retur från databasen
+                    /*
+                    while( $row = $stmt->fetch() ) {
+
+                        $id = $row["id"];
+                        $one = $row["one"];
+                        $six = $row["six"];
+                        $timestamp = $row["timestamp"];
+
+                        echo("<p>id: $id, one: $one, six: $six, timestamp: $timestamp</p>");
+
+                    }
+                    */
+                    //echo("Fungerar!");
+
                     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     $htmlTable = createTable($data);
                     echo($htmlTable);
 
                     
-                } catch(PDOException $e) { 
+                } catch(PDOException $e) { //Men Exception fungerar också!
                     echo("<p>" . $e->getMessage() . "</p>");
                 }
 
