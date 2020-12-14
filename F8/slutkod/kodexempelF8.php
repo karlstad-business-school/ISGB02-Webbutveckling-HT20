@@ -22,9 +22,7 @@
 
                   2. Skapa funktioner för att skriva ut data som en HTML-tabell!
 
-                  3. Lägg till klassen HTMLTable.
-                  4. Skapa instansiera ett objekt ur klassen.
-                  5. Anropa getHTMLTable() och skrivut returdata från metoden.
+            
                 */
 
                 //När ni är klara placera alla funktioner i en extern PHP-fil och inkludera den med
@@ -35,15 +33,12 @@
 
                     $htmlTable = "<table class='table table-border'>" . PHP_EOL;
 
-                    //funktionsanrop...
                     $htmlTable .= createTableHead($table[0]);
                     $htmlTable .= createTableBody($table);
 
                     $htmlTable .= "</table>" . PHP_EOL;
 
                     return $htmlTable;
-
-
                 }
 
                 function createTableHead($oneRow) {
@@ -70,18 +65,62 @@
                     $htmlBody .= "</tbody>";
 
                     return $htmlBody;
-
                 }
 
                 function createTableRow($oneRow) {
-                    //Fortsätter efter lunch på Workshopen!
+                    $htmlRow = "<tr>";
+
+                    $htmlRow .= createTableColumns($oneRow);
+                   
+                    $htmlRow .= "</tr>";
+
+                    return $htmlRow;
 
                 }
 
                 function createTableColumns($oneRow) {
-                    //Fortsätter efter lunch på Workshopen!
+                    
+                    $htmlColumns = "";
+
+                    foreach($oneRow as $column) {
+                        $htmlColumns .= "<td>$column</td>";
+                    }
+
+                    return $htmlColumns;
+
                 }
 
+
+                /*
+                    Workshop 20201214
+                    1. Placera tabellfunktionerna i en egen PHP-fil, namnge den tabelFunctions.php 
+                        och inkludera den i din webbapplikation.
+
+                    2. Skapa en ny PHP-fil och namnge den databaseFunctions.php och inkludera i din webbapplikation.
+
+                    3. I databaseFunctions.php skall du:
+
+                    a). Skapa funktionen openDatabaseConnection() som kopplar webbapplikationen mot databasen och returnerar ett "handtag".
+                        Om något går fel skall ett undantag kastas i funktionern och fångas i funktionen för att sedan
+                        kastas vidare till "huvudprogrammet"
+
+                        try {
+
+
+
+                        } catch(PDOException $e) {
+                            throw $e;
+                        }
+
+                    b). Skapa funktionen fetchDataFromDatabaseConnection() som tar emot en databaskoppling som byval och 
+                        söker ut alla rader och kolumner från nbrofdices samt från funktionen returnernar dessa.
+                        Om något går fel skall ett undantag kastas i funktionern och fångas i funktionen för att sedan
+                        kastas vidare till "huvudprogrammet".
+
+                    c). Skapa funktionen closeDatabaseConnection() som tar emot en databaskoppling som byref och tilldelar denna null.
+                        Om något går fel skall ett undantag kastas i funktionern och fångas i funktionen för att sedan
+                        kastas vidare till "huvudprogrammet".
+                */
 
                 try {
                     $dns = "mysql:host=localhost;dbname=demodice;charset=utf8";
