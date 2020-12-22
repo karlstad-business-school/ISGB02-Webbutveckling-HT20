@@ -1,3 +1,62 @@
+<?php
+    
+    define("IMG", "<img src='https://openclipart.org/download/2821");
+
+    $summa = 0; 
+    $antal = 0;
+    $nickname = "";
+
+    if( isset( $_POST["skicka"] ) ) {
+
+        $nickname = $_POST["nickname"];
+        $stringToPrint = "";
+
+        if(strlen($nickname) >= 2) {
+
+            if(isset($_COOKIE["summa"]) && isset($_COOKIE["antal"])) {
+                $summa = $_COOKIE["summa"];
+                $antal = $_COOKIE["antal"];
+            }
+            
+            for($i = 1; $i <= 6; $i++) {
+                $slumptal = rand(1, 6);
+                $stringToPrint .= IMG . (26 + $slumptal) . "/Die" . $slumptal . ".svg' alt='Tärning " . $slumptal . "' />";
+                $summa += $slumptal;
+            }
+
+            $antal++;
+            $stringToPrint .= "<p>Summan blev: $summa</p>";
+            $stringToPrint .= "<p>Antalet gånger du kastat de 6 tärningarna är: $antal";
+
+            if($summa >= 100) {
+                //Databasanropet kommer här...
+                
+                $summa = 0;
+                $antal = 0;
+
+                //setcookie("summa", "0", time() + (60 * 60 * 24));
+                //setcookie("antal", "0", time() + (60 * 60 * 24));
+
+                $stringToPrint .= "<p style='color: green'>Grattis! Du summan är 100 eller mer!</p>";
+            }
+            
+            setcookie("summa", $summa, time() + (60 * 60 * 24));
+            setcookie("antal", $antal, time() + (60 * 60 * 24));
+
+        } else {
+            $stringToPrint .= "<p style='color: red'>Ange nickname!</p>";
+        }
+
+    }
+
+    if(isset($_POST["rensa"])) {
+        setcookie("summa", "");
+        setcookie("antal", "");
+
+        unset($_COOKIE["summa"]);
+        unset($_COOKIE["antal"]);
+    }
+?>
 <!DOCTYPE html>
 <html lang="sv">
     <head>
@@ -29,47 +88,24 @@
 
                     1. Byt ut de två gömda fälten i formuläret nedan mot att istället använda kakor.
 
+                    setcookie();
+                    $_SESSION[]
+
                     2. Om användaren har tryckt på "rensa" skall de två kakorna tas bort från klienten.
 
                 */
 
-                define("IMG", "<img src='https://openclipart.org/download/2821");
-
-                $summa = 0; 
-                $antal = 0;
-                $nickname = "";
-
-                if( isset( $_POST["skicka"] ) ) {
-
-                    $nickname = $_POST["nickname"];
-
-                    if(strlen($nickname) >= 2) {
-                        $summa = $_POST["summa"];
-                        $antal = $_POST["antal"];
-                        
-                        for($i = 1; $i <= 6; $i++) {
-                            $slumptal = rand(1, 6);
-                            echo(IMG . (26 + $slumptal) . "/Die" . $slumptal . ".svg' alt='Tärning " . $slumptal . "' />");
-                            $summa += $slumptal;
-                        }
-
-                        $antal++;
-                        echo("<p>Summan blev: $summa</p>");
-                        echo("<p>Antalet gånger du kastat de 6 tärningarna är: $antal");
-
-                    } else {
-                        echo("<p>Ange nickname!</p>");
-                    }
+                if(isset($stringToPrint)) {
+                    echo( $stringToPrint );
                 }
 
-
             ?>
-            <form action="kodexempelW7.php" method="post">
+            <form action="kodexempelW9.php" method="post">
                 <input type="text" name="nickname" value="<?php echo($nickname); ?>" />
                 <input type="submit" name="skicka" value="Skicka" />
                 <input type="submit" name="rensa" value="Rensa" />
-                <input type="hidden" name="summa" value="<?php echo($summa); ?>" />
-                <input type="hidden" name="antal" value="<?php echo($antal); ?>" />
+                <!--<input type="hidden" name="summa" value="<?php //echo($summa); ?>" />
+                <input type="hidden" name="antal" value="<?php //echo($antal); ?>" />-->
             </form>
 
         </main>

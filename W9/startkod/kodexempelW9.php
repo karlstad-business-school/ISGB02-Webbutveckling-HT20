@@ -2,7 +2,7 @@
 <html lang="sv">
     <head>
         <meta charset="utf-8">
-        <title>PHP F6</title>
+        <title>PHP W9</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
             integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -64,12 +64,12 @@
 
 
             ?>
-            <form action="kodexempelW7.php" method="post">
+            <form action="kodexempelW9.php" method="post">
                 <input type="text" name="nickname" value="<?php echo($nickname); ?>" />
                 <input type="submit" name="skicka" value="Skicka" />
                 <input type="submit" name="rensa" value="Rensa" />
-                <input type="hidden" name="summa" value="<?php echo($summa); ?>" />
-                <input type="hidden" name="antal" value="<?php echo($antal); ?>" />
+                <!--<input type="hidden" name="summa" value="<?php //echo($summa); ?>" />
+                <input type="hidden" name="antal" value="<?php //echo($antal); ?>" /> -->
             </form>
 
         </main>
