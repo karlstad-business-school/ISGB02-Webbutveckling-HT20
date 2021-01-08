@@ -25,7 +25,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
             integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <style>
-            body { background-color: <?php echo( $_SESSION["color"]); ?>; }
+            body { background-color: <?php if(isset($_SESSION["color"]) ) { echo( $_SESSION["color"]); } ?>; }
         </style>
 
     </head>
@@ -34,7 +34,8 @@
             <h1>Steg 2</h1>
             
             <?php
-                echo("<h1>NickName är: " . $_SESSION["nickname"] . "</h1>");
+                echo("Test!");
+                echo("<h1>NickName är: " . if( isset( $_SESSION["nickname"] )) { $_SESSION["nickname"] }. "</h1>");
             ?>
 
             <form method="POST" enctype="application/x-www-form-urlencoded" action="<?php echo($_SERVER["PHP_SELF"]); ?>">

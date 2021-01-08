@@ -3,56 +3,21 @@
     /*
         1. Starta en session eller ge tillträde till en redan existerande session samt generera ett nytt sessionsid.
         2. Om sessionsvariablerna nickname och color finns på servern skall:
-        a) En redirect skickas till klienten med instruktionen att istället anropa filen checkandremovesession.php.  
+        a) En redirect skickas till klienten med instruktionen att istället anropa filen step22.php.  
         b) Därefter skall funktionen exit() anropas för att säkerställa att ingen försöker komma förbi redirect-anropet.
 
         3. Om sessionsvariablern inte finns på servern skall du kontrollera om användaren har tryckt på submit-knappen btnNext och om så är fallet skall du:
         a) Kontrollera om texten i nickname är mindre än tre tecken lång så är fallet skapa variabeln errorMsg och tilldela den värdet: 
             "Nickname skall vara minst tre tecken!".
-        b) Om texten i nickname är minst tre tecken lång skall du kontrollera om color innehåller värdet "#ffffff" och så är fallet skapa variabeln errorMsg 
-            och tilldela den värdet:"Color får inte vara vit!"
+        b) Om texen i nickname är minst tre tecken lång skall du kontrollera om color innehåller värdet "#ffffff" och så är fallet skapa variabeln errorMsg och tilldela den värdet:
+            "Color får inte vara vit!"
         c) Om color inte innehåller värdet "#ffffff" skall du:
             1. Skapa sessionsvariabeln nickname med värdet i nickname.
             2. Skapa sessionsvariabeln color med värdet i color.
-            3. Skicka en redirect till klienten med instruktionen att istället anropa filen checkandremovesession.php.
+            3. Skicka en redirect till klienten med instruktionen att istället anropa filen step22.php.
             4. Anropa exit() funktionen.  
 
     */
-    //Steg 1
-    session_start();
-    session_regenerate_id( true );
-
-    //Steg 2
-    if( isset( $_SESSION["nickname"]) && isset( $_SESSION["color"] ) ) {
-        header("location: checkandremovesession.php");
-        exit();
-    }
-
-    //Steg 3
-    if( isset( $_POST["btnNext"]) ) {
-
-        $nickName = trim( $_POST["nickname"] );
-
-        if( strlen( $nickName) < 3) {
-
-            $errorMsg = "Nickname skall vara minst tre tecken!";
-
-        } else {
-
-            $color = $_POST["color"];
-
-            if($color === "#ffffff") {
-                $errorMsg = "Color får inte vara vit!";
-            } else {
-                $_SESSION["nickname"] = $nickName;
-                $_SESSION["color"] = $color;
-
-                header("location: checkandremovesession.php");
-                exit();
-            }
-        }
-
-    }
 
 ?>
 <!DOCTYPE html>

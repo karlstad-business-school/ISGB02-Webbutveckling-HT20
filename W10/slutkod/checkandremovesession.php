@@ -3,17 +3,58 @@
     /*
         1. Starta en session eller ge tillträde till en redan existerande session samt generera ett nytt sessionsid.
         2. Om inte sessionsvariablerna nickname och color finns på servern skall:
-        a) En redirect skickas till klienten med instruktionen att istället anropa filen step11.php.  
+        a) En redirect skickas till klienten med instruktionen att istället anropa filen startsession.php.  
         b) Därefter skall funktionen exit() anropas för att säkerställa att ingen försöker komma förbi redirect-anropet.
 
         3. Om användaren har tryckt på submit-knappen btnDeleteSession skall du:
         a) Ta bort sessionsvariabeln nickname.
         b) Ta bort sessionsvariabeln color.
         c) Avsluta sessionen.
-        d) Skicka en redirect till klienten med instruktionen att istället anropa filen step11.php.
+        d) Skicka en redirect till klienten med instruktionen att istället anropa filen startsession.php.
         e) Anropa exit() funktionen. 
 
     */
+
+    //Steg 1
+    session_start();
+    session_regenerate_id( true );
+
+    //Steg 2
+    if( !isset($_SESSION["nickname"]) && !isset($_SESSION["color"]) ) {
+        header("location: startsesssion.php");
+        exit();
+    }
+
+    if( isset($_POST["btnDeleteSession"])) {
+
+        //Alternativt koden från förmiddagens föreläsning om att manuellt anropa setcookie()...
+        //session_unset();
+        //session_destroy();
+
+        if( session_status() === PHP_SESSION_ACTIVE) {
+            session_unset();
+            //$_SESSION = array();
+
+            if( ini_get( "session.use_cookies" ) ) {
+
+                $cookieData = session_get_cookie_params();
+
+                $path = $cookieData["path"];
+                $domain = $cookieData["domain"];
+                $secure = $cookieData["secure"];
+                $httponly = $cookieData["httponly"];
+                $name = session_name();
+
+                setcookie($name, "", time() - 3600, $path, $domain, $secure, $httponly);
+            }
+
+
+            session_destroy();
+        }
+
+        header("location: startsesssion.php");
+        exit();
+    }
 
 ?>
 <!DOCTYPE html>
@@ -25,7 +66,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
             integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <style>
-            body { background-color: <?php echo( $_SESSION["color"]); ?>; }
+            body { background-color: <?php if(isset($_SESSION["color"]) ) { echo( $_SESSION["color"]); } ?>; }
         </style>
 
     </head>
@@ -34,7 +75,9 @@
             <h1>Steg 2</h1>
             
             <?php
-                echo("<h1>NickName är: " . $_SESSION["nickname"] . "</h1>");
+                if(isset($_SESSION["nickname"]) ) {
+                    echo("<h1>NickName är: " .  $_SESSION["nickname"] . "</h1>");
+                }
             ?>
 
             <form method="POST" enctype="application/x-www-form-urlencoded" action="<?php echo($_SERVER["PHP_SELF"]); ?>">
